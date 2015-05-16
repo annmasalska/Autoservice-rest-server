@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Starting thrift-server in development mode..."
+
+./sbt 'run -f=src/main/scala/App.scala -admin.port=localhost:7070  -log.level=DEBUG '
+

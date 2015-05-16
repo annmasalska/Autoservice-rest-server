@@ -1,0 +1,43 @@
+CREATE TABLE auction (
+queryType VARCHAR,
+carBrand VARCHAR,
+params map<varchar, varchar>,  -- {"sort": "aphabeticaly","groupBy": "title"}
+model VARCHAR ,
+exactCloseDate VARCHAR, 
+lot VARCHAR, 
+price VARCHAR ,
+status VARCHAR, 
+timeToEnd map<varchar, varchar>,
+details map<varchar, varchar>,
+data text,
+sorted varchar,
+PRIMARY KEY((queryType,carBrand), model, exactCloseDate)
+);
+
+
+CREATE TABLE catalog
+(
+queryType VARCHAR, -- possible types: currentPartsByPartType, currentPartsByAuto, currentPartsByModel
+partType VARCHAR, -- possible types: body part, engine, wheel & tire
+carBrand VARCHAR,
+model VARCHAR,
+title VARCHAR, -- example: door, roof etc
+params map<varchar, varchar>, -- {"sort": "aphabeticaly","groupBy": "title"}
+price VARCHAR ,
+status VARCHAR,
+details map<varchar, varchar>,
+PRIMARY KEY((queryType, partType), carBrand, model)
+);
+
+
+ Здравствуйте, ниже приведены итоговые таблицы БД. Дайте, пожалуйста, свои рекомендации , если что не так сделано на ваш взгляд.
+Но есть такой нюанс:
+
+	{
+		"id": "2",
+		"logo": "/images/logo/car_logo_PNG1641.png",
+		"car_brand": "BMW",
+		"amount": "3",
+		"models":[ "1", "3", "4" ]
+	},
+
