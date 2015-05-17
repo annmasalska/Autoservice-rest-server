@@ -15,11 +15,11 @@ public class TableStorage {
 
     public static final Logger log = Logger.get(TableStorage.class);
 
-    protected MTableServiceConfig enrollRegionServiceConfig = new MTableServiceConfig();
+    protected MTableServiceConfig RegionServiceConfig = new MTableServiceConfig();
 
     protected AstyanaxContext<Keyspace> context = new AstyanaxContext.Builder()
-            .forCluster(enrollRegionServiceConfig.cassandraCluster())
-            .forKeyspace(enrollRegionServiceConfig.cassandraKeyspace())
+            .forCluster(RegionServiceConfig.cassandraCluster())
+            .forKeyspace(RegionServiceConfig.cassandraKeyspace())
             .withAstyanaxConfiguration(
                     new AstyanaxConfigurationImpl()
                             .setDiscoveryType(NodeDiscoveryType.NONE)
@@ -28,8 +28,6 @@ public class TableStorage {
                             .setDiscoveryDelayInSeconds(10000)
                             .setTargetCassandraVersion("1.2")
                             .setCqlVersion("3.1.1")
-                    //.setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE)
-                    //.setConnectionPoolType(ConnectionPoolType.TOKEN_AWARE)
             )
             .withConnectionPoolMonitor(new CountingConnectionPoolMonitor())
             .withConnectionPoolConfiguration(new ConnectionPoolConfigurationImpl("connectionpool1")
@@ -50,7 +48,7 @@ public class TableStorage {
                             .setLatencyAwareSentinelCompare(100f).setSocketTimeout(30000)
                             .setMaxTimeoutWhenExhausted(10000)
                             .setInitConnsPerHost(1 /*10*/)
-                            .setSeeds(enrollRegionServiceConfig.cassandraSeeds())
+                            .setSeeds(RegionServiceConfig.cassandraSeeds())
             )
             .withConnectionPoolMonitor(new CountingConnectionPoolMonitor())
             .buildKeyspace(ThriftFamilyFactory.getInstance());

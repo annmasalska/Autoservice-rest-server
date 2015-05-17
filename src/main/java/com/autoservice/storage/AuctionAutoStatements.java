@@ -4,8 +4,6 @@ import Auction.AuctionAuto$;
 import Auction.Bid$;
 import Auction.ListAuctionAutos;
 import Auction.ListAuctionAutos$;
-import com.autoservice.storage.mapping.AvailableAutoEntity;
-import com.google.common.base.Preconditions;
 import com.netflix.astyanax.connectionpool.OperationResult;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.model.ColumnFamily;
@@ -43,7 +41,6 @@ public class AuctionAutoStatements extends TableStorage {
             );
 
 
-
     private static final String SELECT_ALL = "SELECT * FROM auction";
 
 
@@ -52,8 +49,6 @@ public class AuctionAutoStatements extends TableStorage {
             .prepareQuery(CF)
             .withCql(SELECT_ALL)
             .asPreparedStatement();
-
-
 
 
     public ListAuctionAutos readAll() throws ConnectionException {

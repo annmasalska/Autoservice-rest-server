@@ -44,7 +44,7 @@ class AutoserviceServer extends Controller {
 
     val a: ListAutos = availableAutos.readAllAuction
     val json = a.autos.toList.asJson
-    render.json(json).toFuture
+    render.json(json.toString()).toFuture
 
   }
 
@@ -52,7 +52,7 @@ class AutoserviceServer extends Controller {
 
     val a: ListAutos = availableAutos.readAllCatalog()
     val json = a.autos.toList.asJson
-    render.json(json).toFuture
+    render.json(json.toString()).toFuture
 
   }
   get("/api/auction-auto/:carbrand") { request =>
@@ -60,7 +60,7 @@ class AutoserviceServer extends Controller {
     val carBrand = request.routeParams.getOrElse("carbrand", "default")
     val a: ListAutos = availableAutos.readByCarBrand(carBrand)
     val json = a.autos.toList.asJson
-    render.json(json).toFuture
+    render.json(json.toString()).toFuture
 
   }
 
